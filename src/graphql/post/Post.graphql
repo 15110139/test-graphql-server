@@ -1,0 +1,53 @@
+scalar Date
+input PostInput {
+  title: String!
+  content: String!
+  createBy: String!
+}
+input UpdatePost {
+  postId: String!
+  title: String!
+  content: String!
+}
+type User {
+  name: String
+  email: String
+  _id: String
+}
+
+type Post {
+  title: String
+  content: String
+  isPublic: Boolean
+  createBy: User
+  _id: String
+}
+type NewPost {
+  title: String
+  content: String
+  isPublic: Boolean
+  createBy: String
+  _id: String
+}
+
+type Success {
+  success: String
+}
+
+type Subscription {
+  postAdded: NewPost!
+}
+
+type Mutation {
+  createNewPost(post: PostInput!): NewPost!
+  publicPost(postId: String!): Success!
+  updatePost(post: UpdatePost!): Success!
+  deletePost(postId: String!): Success!
+}
+
+type Query {
+  getListPostByUserId(userId: String!): [Post!]
+  getListPostPublic: [Post]!
+  getListPostPrivate: [Post]!
+  getListPost: [Post]!
+}
