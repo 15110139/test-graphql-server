@@ -6,16 +6,8 @@ pipeline {
     stages {
         stage('Clone') {
             steps {
-                dir("${WORKSPACE}/backend") {
+                dir("core") {
                     checkout([$class: 'GitSCM', branches: [[name: '*/master']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/15110139/test-graphql-server']]])
-                }
-            }
-        }
-
-        stage('Clone1') {
-            steps {
-                dir("${WORKSPACE}/core") {
-                    checkout([$class: 'GitSCM', branches: [[name: '*/master']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/15110139/list-todo-with-firebase']]])
                 }
             }
         }
